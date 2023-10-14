@@ -1,5 +1,0 @@
-const API_DOCUMED_GATEWAY_URL = `${process.env.BACKEND_API_GATEWAY_URL}`;
-
-export {
-    API_DOCUMED_GATEWAY_URL
-};
