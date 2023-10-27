@@ -1,17 +1,48 @@
-// import { Login, SignUp } from '@/pages/Auth';
-// import Dashboard from '@/pages/Dashboard/Dashboard';
-// import { Profile, Settings } from '@/pages/Profile';
-// import { Groups, GroupsCreate, GroupsEditID } from '@/pages/Groups';
-// import { QuizHome, QuizzesCreate, QuizzesEditID, QuizAttemptID } from '@/pages/Quizzes';
-// import { Onboarding, ProfessorOnboarding, StudentOnboarding } from '@/pages/Onboarding/index';
-// // import TemplateTester from '@/components/TemplateTester/TemplateTester';
-// import {TestHome} from '@/pages/Tests';
+import { Login } from "@/pages/Login";
+
+import { Home as PatientHomePage } from "@/pages/Patients/Home";
+
+import { MainContainer } from "@/layouts/Containers/MainContainer";
+import { AuthLayout } from "@/layouts/Auth/AuthLayout";
+
+export enum RouteNodeType {
+  LAYOUT,
+  PAGE
+}
 
 export const config = [
+  {
+    id: "auth-container",
+    element: <AuthLayout />,
+    type: RouteNodeType.LAYOUT,
+    children: [
+      {
+        id: 'login',
+        title: 'Log In',
+        element: <Login />,
+        path: '/',
+        isPrivate: false,
+      },
+    ]
+  },
+  {
+    id: "main-container",
+    element: <MainContainer />,
+    type: RouteNodeType.LAYOUT,
+    children: [
+      {
+        id: "patients-home",
+        title: 'Pacientes',
+        element: <PatientHomePage />,
+        path: '/patients',
+        isPrivate: true,
+      },
+    ]
+  },
   // {
-  //   id: 'login',
-  //   title: 'Log In',
-  //   element: <Login />,
+  //   id: 'patients-attention',
+  //   title: 'Detalle de Paciente',
+  //   element: <PatientDetailPage />,
   //   path: '/login',
   //   isPrivate: false,
   // },
