@@ -1,4 +1,4 @@
-// import { Logo } from '@/components/Logo/Logo';
+import { Logo } from '@/components/Logo/Logo';
 import { Box, Grid, Stack, Typography } from '@mui/material';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import { Outlet } from 'react-router-dom';
@@ -19,7 +19,7 @@ export const AuthLayout = () => {
             }}
           >
             <Grid item height={'120px'} display={'flex'} justifyContent={'flex-start'} alignItems={'center'}>
-              {/* <Logo color="#000" /> */}
+               {/* <Logo color="#000" />  */}
             </Grid>
             <Grid item xs display={'flex'} justifyContent={'flex-start'}>
               <Outlet />

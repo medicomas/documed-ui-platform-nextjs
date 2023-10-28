@@ -49,17 +49,36 @@ export const config = [
         element: <PatientHomePage />,
         path: '/patients',
         isPrivate: true,
-        sidebar: true
+        sidebar: true,
+        iconId: "REMIXpatient"
+      },
+      {
+        id: 'scheduled-appointments',
+        title: 'Citas programadas',
+        element: <></>,
+        path: '/scheduled-appointments',
+        sidebar: true,
+        isPrivate: false,
+        iconId: "REMIXscheduled"
+      },
+      {
+        id: 'user-management',
+        title: 'Usuarios',
+        element: <></>,
+        path: '/user-management',
+        sidebar: true,
+        isPrivate: false,
+        iconId: "REMIXusers"
       },
     ]
   },
-  {
-    id: 'patients-attention',
-    title: 'Detalle de Paciente',
-    element: <Detail />,
-    path: '/detail',
-    isPrivate: false,
-  },
+  // {
+  //   id: 'patients-attention',
+  //   title: 'Detalle de Paciente',
+  //   element: <Detail />,
+  //   path: '/patients/detail',
+  //   isPrivate: false,
+  // },
   // {
   //   id: 'sign-up',
   //   title: 'Sign Up',

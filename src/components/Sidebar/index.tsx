@@ -1,1 +1,2 @@
-export const Sidebar = () => <></>;
+import { Sidebar } from "./Sidebar";
+export { Sidebar };

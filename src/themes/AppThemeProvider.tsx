@@ -163,7 +163,7 @@ export const AppThemeProvider: React.FC<Props> = ({ children }) => {
       },
 
       typography: {
-        fontFamily: 'Plus Jakarta Sans, sans-serif',
+        fontFamily: 'IBM Plex Sans, sans-serif',
         h1: {
           fontSize: '26px',
           fontWeight: '600',
