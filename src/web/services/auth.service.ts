@@ -20,7 +20,7 @@ const AuthService = {
         if(response.data.token) UserService.setToken(response.data.token);
         return response.data.token;
     }, 
-    logout: () => {}
+    logout: () => UserService.removeToken()
 }
 
 export { AuthService }
