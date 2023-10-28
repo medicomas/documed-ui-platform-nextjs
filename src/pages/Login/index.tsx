@@ -1,3 +1,4 @@
-export const Login = () => {
-    return <>Login</>;
-}
+import { SignIn } from "./SignIn"
+export const Login = () => <SignIn/>
+
+

@@ -33,9 +33,9 @@ export const AuthLayout = () => {
                 paddingX={3}
                 sx={{ color: '#808084' }}
               >
-                <Typography variant="body2">Ⓒ Juez Cachimbo 2023</Typography>
+                <Typography variant="body2">Ⓒ Medicomas 2023</Typography>
                 <Typography variant="body2">
-                  <EmailOutlinedIcon sx={{ mb: -1 }} /> contacto@juezcachimbo.com
+                  <EmailOutlinedIcon sx={{ mb: -1 }} /> contacto@medicomas.com
                 </Typography>
               </Stack>
             </Grid>
@@ -44,7 +44,7 @@ export const AuthLayout = () => {
         <Grid item xs={0} md={5}>
           <Box
             sx={{
-              background: 'linear-gradient(218deg, #9181F4 -5.84%, #5038ED 106.73%)',
+              background: 'linear-gradient(109.6deg, rgb(9, 154, 151) 11.2%, rgb(21, 205, 168) 91.1%)',
               boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
               height: '100vh',
             }}
