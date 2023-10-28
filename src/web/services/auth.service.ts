@@ -1,3 +1,4 @@
+import { RedirectService } from "@/components/auth/redirect.service";
 import medicomasAuthAxiosClient from "../auth-axios-client";
 import UserService from "./user.service";
 
@@ -20,7 +21,18 @@ const AuthService = {
         if(response.data.token) UserService.setToken(response.data.token);
         return response.data.token;
     }, 
-    logout: () => UserService.removeToken()
+    logout: async (): Promise<boolean> => {
+        let successSignOut = false;
+        try {
+            UserService.removeToken();
+            successSignOut = true;
+           
+        } catch(e) {
+            console.error(e);
+        } 
+        if(successSignOut) RedirectService.goToRoute("/");
+        return successSignOut;
+    }
 }
 
 export { AuthService }
