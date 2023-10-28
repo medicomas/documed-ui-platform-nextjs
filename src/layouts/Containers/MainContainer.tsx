@@ -30,8 +30,6 @@ export const MainContainer = () => {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: NAVBAR.WIDTH,
-            borderTopRightRadius: '40px',
-            borderBottomRightRadius: '40px',
             background: 'linear-gradient(109.6deg, #5C35E0 11.5%, #7C5DE6 91.2%)',
             border: 'none',
             borderWidth: '0px',
@@ -53,8 +51,6 @@ export const MainContainer = () => {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: NAVBAR.WIDTH,
-            borderTopRightRadius: '40px',
-            borderBottomRightRadius: '40px',
             background: 'linear-gradient(109.6deg, #5C35E0 11.5%, #7C5DE6 91.2%)',
             border: 'none',
             borderWidth: '0px',
