@@ -22,7 +22,7 @@ import {
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export function AccountMenu() {
+export function AccountMenu( {accountName = "", accountLastName = ""}) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -62,10 +62,10 @@ export function AccountMenu() {
             textAlign: 'center',
           }}
         >
-          <Avatar sx={{ width: 36, height: 36 }}>PP</Avatar>
+          <Avatar sx={{ width: 36, height: 36 }}>{accountName[0]}{accountLastName[0]}</Avatar>
           <Box ml={1} sx={{ display: { xs: 'none', sm: 'block' } }}>
             <Typography variant="body1" color={'black'}>
-              Peter Parker
+              {accountName}
             </Typography>
           </Box>
         </Box>

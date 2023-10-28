@@ -15,10 +15,15 @@ import {
 
 import { appointments } from './data';
 
+interface Props {
+  currentViewName?: any
+  onChange?: any
+}
+
 const ExternalViewSwitcher = ({
     currentViewName,
     onChange,
-  }) => (
+  }: Props) => (
     <RadioGroup
       aria-label="Views"
       style={{ flexDirection: 'row' }}
@@ -50,7 +55,7 @@ const ExternalViewSwitcher = ({
 
   
   
-  export const demo = ()=>{
+  export const Demo = ()=>{
   
 
     const [data] = useState(appointments)

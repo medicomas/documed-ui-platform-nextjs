@@ -6,10 +6,10 @@ import { CustomBreadcrumbs } from './Breadcrumbs';
 
 interface Props {
   handleToggle?: () => void;
+  account?: any
 }
 
-export const Topbar = ({ handleToggle }: Props) => {
-
+export const Topbar = ({ handleToggle, account }: Props) => {
 
   return (
     <Grid
@@ -36,7 +36,7 @@ export const Topbar = ({ handleToggle }: Props) => {
         </Typography>
       </Grid>
       <Grid>
-        <AccountMenu />
+        <AccountMenu accountName={`${account?.names}`} accountLastName={account?.surnames} />
       </Grid>
     </Grid>
   );

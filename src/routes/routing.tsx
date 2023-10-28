@@ -20,10 +20,13 @@ const createRoutesFromConfig = (routes: any[]) => {
   });
 };
 
+const NotFoundPage = () => <></>;
+
 export const Routing = () => {
   return (
     <Router>
       {createRoutesFromConfig(config)}
+      <Route path='*' element={<NotFoundPage />}/>
     </Router>
   );
 };

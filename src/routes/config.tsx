@@ -7,6 +7,7 @@ import { Detail } from "@/pages/Patients";
 import { Home as PatientHomePage } from "@/pages/Patients/Home";
 
 import { flattenConfig } from "@/utils/routes.util";
+import { Sheduled } from "@/pages/Sheduled";
 
 export enum RouteNodeType {
   LAYOUT,
@@ -55,7 +56,7 @@ export const config = [
       {
         id: 'scheduled-appointments',
         title: 'Citas programadas',
-        element: <></>,
+        element: <Sheduled />,
         path: '/scheduled-appointments',
         sidebar: true,
         isPrivate: false,

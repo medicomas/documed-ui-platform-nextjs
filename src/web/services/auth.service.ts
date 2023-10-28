@@ -13,7 +13,7 @@ type AuthResponse = {
 
 const API_VERSION = '/v1';
 
-const RESOURCE = "/auth/login"
+const RESOURCE = "/auth/login";
 
 const AuthService = {
     login: async (credentials: Credentials): Promise<AuthResponse> => {

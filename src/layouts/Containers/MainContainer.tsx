@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Outlet } from 'react-router-dom';
 
@@ -7,11 +7,30 @@ import { Grid, Drawer, Container } from '@mui/material';
 import { NAVBAR } from '@/constants/ui';
 
 import { Sidebar, Topbar } from '@/components';
+import ProfileService from '@/web/services/profile.service';
 
 const background = "#ffffff";
 
 export const MainContainer = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [account, setAccount] = useState<any>(null);
+
+
+    const fecth = async () => {
+        let account;
+        try {
+          account = await ProfileService.get();
+        } catch (error) {
+            console.error(error);
+        } finally {
+          console.log(account)
+          setAccount(account);
+        }
+    }
+
+    useEffect(() => {
+        fecth().then();
+    }, [])
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -66,7 +85,7 @@ export const MainContainer = () => {
       <Grid item container xs sx={{ minHeight: `calc(100vh)`, background: "#f8f9fa"}}>
         <Container maxWidth={'xl'} >
           <Grid item xs={12}>
-            <Topbar handleToggle={handleDrawerToggle} />
+            <Topbar account={account} handleToggle={handleDrawerToggle} />
           </Grid>
           <Grid item flex={1} >
             <Outlet />
