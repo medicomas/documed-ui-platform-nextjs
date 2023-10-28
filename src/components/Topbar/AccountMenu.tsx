@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { AuthService } from '@/web/services/auth.service';
+
 import { 
   Typography, 
   Box, 
@@ -32,7 +34,10 @@ export function AccountMenu() {
 
   const navigate = useNavigate();
 
-  const goToLogin = () => navigate('/login');
+  const goToLogin = async() => {
+    const res = await AuthService.logout();
+    if(res) navigate('/')
+  };
 
   return (
     <React.Fragment>

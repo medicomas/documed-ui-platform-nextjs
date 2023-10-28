@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { Container, Box, Typography, TextField, Button } from '@mui/material';
+import { Container, Box, Typography, TextField, Button, Alert } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AuthService } from '../../web/services/auth.service';
 
@@ -18,12 +18,19 @@ export const SignIn = () => {
         register,
         handleSubmit,
         formState: { errors }} = useForm({ resolver: yupResolver(schema), })
-    
+        
+    // const [errorMessage, setErrorMessage] = useState('');
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     const onSubmit = async(data) => {
         const res = await AuthService.login(data);
         if (res) navigate('/patients');
+
+        // else{
+        //     setErrorMessage('Por favor, revise los campos del formulario.');
+        //     return;
+        // }
     }
     
     return(
@@ -69,6 +76,11 @@ export const SignIn = () => {
                     error={!!errors.password}
                     helperText={errors.password?.message}
                     />
+
+                    {/* {errorMessage && (
+                        <Alert severity="error">{errorMessage}</Alert>
+                    )} */}
+                    
                     <Button type='submit' fullWidth variant='contained'sx={{mt:3, mb:2, background:gradient,'&:hover':{background:gradient} }}>
                         Ingresar
                     </Button>
