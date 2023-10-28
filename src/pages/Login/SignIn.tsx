@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { Container, Box, Typography, TextField, Button } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { AuthService } from '@web/services/auth.service';
+import { AuthService } from '../../web/services/auth.service';
 
 export const SignIn = () => {
     const gradient ="linear-gradient(109.6deg, rgb(9, 154, 151) 11.2%, rgb(21, 205, 168) 91.1%)";
