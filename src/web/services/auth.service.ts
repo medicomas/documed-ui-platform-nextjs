@@ -30,8 +30,7 @@ const AuthService = {
         } catch(e) {
             console.error(e);
         } 
-        if(successSignOut) RedirectService.goToRoute("/");
-        return successSignOut;
+        return new Promise((resolve) => {resolve(successSignOut)});
     }
 }
 
