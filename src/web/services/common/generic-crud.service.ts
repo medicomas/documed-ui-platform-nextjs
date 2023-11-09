@@ -3,14 +3,12 @@ import medicomasAxiosClient from "@/web/medicomas-axios-client";
 export type Config = {
     bodyPostWithOutItemKey: boolean
 }
-const API_VERSION = '/v1';
-
 type IndexableType = {
     [key: string]: any;
 };
 
 class GenericService<T extends IndexableType> {
-    
+
     private endpoint: string;
     private itemKey: string;
     // todo private itemsKey: string;
@@ -34,18 +32,18 @@ class GenericService<T extends IndexableType> {
     }
 
     async get(): Promise<T[]> {
-        const response =  await medicomasAxiosClient.get(`${API_VERSION}/${this.endpoint}`);
+        const response =  await medicomasAxiosClient.get(`${this.endpoint}`);
         return response?.data || [];
     }
 
     async getById(id: number): Promise<T> {
-        const response = await medicomasAxiosClient.get(`${API_VERSION}/${this.endpoint}/${id}`);
+        const response = await medicomasAxiosClient.get(`${this.endpoint}/${id}`);
         return response?.data;
     }
 
     async create(data: any): Promise<T> {
         const body = this.config?.bodyPostWithOutItemKey ? {...data} : { [this.itemKey]: data };
-        const response = await medicomasAxiosClient.post(`${API_VERSION}/${this.endpoint}`, body);
+        const response = await medicomasAxiosClient.post(`${this.endpoint}`, body);
         return response?.data;
     }
 
@@ -54,15 +52,15 @@ class GenericService<T extends IndexableType> {
         const id = data[this.idKey] as unknown as number;
         const copyData = { ...data };
         delete copyData[this.idKey];
-        const response = await medicomasAxiosClient.put(`${API_VERSION}/${this.endpoint}/${id}`, copyData)
+        const response = await medicomasAxiosClient.put(`${this.endpoint}/${id}`, copyData)
         return response?.data;
     }
 
     async delete( id: string ): Promise<any> {
-        const response = await medicomasAxiosClient.delete(`${API_VERSION}/${this.endpoint}/${id}`);
+        const response = await medicomasAxiosClient.delete(`${this.endpoint}/${id}`);
         return response?.data;
     }
-    
+
 };
 
 export default GenericService;
