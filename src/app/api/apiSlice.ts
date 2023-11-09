@@ -3,7 +3,7 @@ import { BaseQueryApi, createApi, FetchArgs, fetchBaseQuery } from '@reduxjs/too
 import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_API_URL,
+  baseUrl: import.meta.env.VITE_MEDICOMAS_API_URL,
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).user.token;
 
