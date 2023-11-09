@@ -1,13 +1,13 @@
 import { Icons } from '@/models/icon.model';
 
-import calendarFillIcon from "remixicon-react/calendarFillIcon"
-import calendarLineIcon from "remixicon-react/calendarLineIcon"
+import calendarFillIcon from "remixicon-react/CalendarFillIcon"
+import calendarLineIcon from "remixicon-react/CalendarLineIcon"
 
-import userHeartFillIcon from "remixicon-react/userHeartFillIcon"
-import userHeartLineIcon from "remixicon-react/userHeartLineIcon"
+import userHeartFillIcon from "remixicon-react/UserHeartFillIcon"
+import userHeartLineIcon from "remixicon-react/UserHeartLineIcon"
 
-import userSettingsFillIcon from "remixicon-react/userSettingsFillIcon"
-import userSettingsLineIcon from "remixicon-react/userSettingsLineIcon"
+import userSettingsFillIcon from "remixicon-react/UserSettingsFillIcon"
+import userSettingsLineIcon from "remixicon-react/UserSettingsLineIcon"
 
 
 export const sidebarIcons: Icons = {
