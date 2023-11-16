@@ -10,7 +10,6 @@ export const IconWrapper = ({ id, color, width }: Props) => {
 
   const Icon = icons[id];
 
-  console.log(id);
   if (id.startsWith('REMIX')) return <Icon color={color} size={width} />;
 
   return <Icon sx={{ color, fontSize: width }} />;

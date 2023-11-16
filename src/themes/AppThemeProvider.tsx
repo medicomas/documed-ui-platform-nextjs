@@ -84,6 +84,11 @@ declare module '@mui/material/Typography' {
     Body1SemiBold: true;
   }
 }
+
+// const green = "#1B9C9C";
+
+// const white = "#DDDFE9";
+
 export const AppThemeProvider: React.FC<Props> = ({ children }) => {
   const mode = useAppSelector((state) => state.user.mode);
   const theme = responsiveFontSizes(
@@ -91,7 +96,7 @@ export const AppThemeProvider: React.FC<Props> = ({ children }) => {
       palette: {
         mode: mode as PaletteMode,
         primary: {
-          main: '#4571BF',
+          main: '#1B9C9C',
           light: '#6A8DCB',
           dark: '#304F85',
         },
@@ -292,10 +297,10 @@ export const AppThemeProvider: React.FC<Props> = ({ children }) => {
             },
             contained: {
               boxShadow: 'none',
-              background: '#5C35E0',
+              background: '#1B9C9C',
               '&:hover': {
                 boxShadow: 'none',
-                background: '#5C35E0',
+                background: '#1B9C9C',
               },
             },
             outlined: {

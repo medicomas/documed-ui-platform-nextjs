@@ -8,11 +8,14 @@ type Props = {
   isActive: boolean;
 };
 
+const WHITE = '#DDDFE9';
+const background = '#1B9C9C';
+
 export const NavItem = ({ iconId, label, isActive }: Props) => {
   const style = isActive
     ? {
         // background: 'rgba(0, 10, 25, 0.20)',
-        background: '#e4e9ec',
+        background: WHITE,
         //  background: "linear-gradient(179.4deg, rgb(12, 20, 69, 0.3) -16.9%, rgb(71, 30, 84, 0.3) 119.9%)",
         borderRadius: '4px',
         // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
@@ -22,7 +25,7 @@ export const NavItem = ({ iconId, label, isActive }: Props) => {
 
   return (
     <>
-      <Box
+      {/* <Box
         height={40}
         position={'absolute'}
         width={3}
@@ -31,7 +34,7 @@ export const NavItem = ({ iconId, label, isActive }: Props) => {
           borderTopRightRadius: '5px',
           borderBottomRightRadius: '5px',
         }}
-      ></Box>
+      ></Box> */}
 
       <Box
         mx={'10%'}
@@ -49,14 +52,10 @@ export const NavItem = ({ iconId, label, isActive }: Props) => {
             // ...style
           }}
         >
-          <IconWrapper
-            id={`${iconId}${isActive ? '_ON' : '_OFF'}`}
-            color={isActive ? '#16161A' : '#666f75'}
-            width={24}
-          />
+          <IconWrapper id={`${iconId}${isActive ? '_ON' : '_OFF'}`} color={isActive ? background : WHITE} width={24} />
         </Box>
         <Typography
-          color={isActive ? '#16161A' : '#666f75'}
+          color={isActive ? background : WHITE}
           variant="body1"
           sx={{
             display: 'flex',

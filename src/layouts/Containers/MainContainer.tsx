@@ -4,12 +4,12 @@ import { Outlet } from 'react-router-dom';
 
 import { Grid, Drawer, Container } from '@mui/material';
 
-import { NAVBAR } from '@/constants/ui';
+import { NAVBAR, MAIN_CONTAINER } from '@/constants/ui';
 
 import { Sidebar, Topbar } from '@/components';
 import ProfileService from '@/web/services/profile.service';
 
-const background = '#ffffff';
+const background = '#1B9C9C';
 
 export const MainContainer = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -22,7 +22,6 @@ export const MainContainer = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      console.log(account);
       setAccount(account);
     }
   };
@@ -81,7 +80,7 @@ export const MainContainer = () => {
           <Sidebar />
         </Drawer>
       </Grid>
-      <Grid item container xs sx={{ minHeight: `calc(100vh)`, background: '#f8f9fa' }}>
+      <Grid item container xs sx={{ minHeight: `calc(100vh)`, background: MAIN_CONTAINER.BACKGROUND }}>
         <Container maxWidth={'xl'}>
           <Grid item xs={12}>
             <Topbar account={account} handleToggle={handleDrawerToggle} />

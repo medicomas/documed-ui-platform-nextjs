@@ -10,36 +10,41 @@ import { Logo } from '../Logo/Logo';
 export const Sidebar = () => {
   return (
     <Box height={'100vh'} display={'flex'} flexDirection={'column'}>
-      <Box flex={1}>
-        <Grid container item>
-          <Grid
+      <Box flex={1} sx={{ display: 'flex', alignItems: 'center' }}>
+        {/* <Grid container item sx={{ background: "blue" }} > */}
+        {/* <Grid
             item
             height={HEADER.HEIGHT}
             xs={12}
             mb={2}
-            sx={{}}
+            sx={{
+              background: "red"
+            }}
             display={'flex'}
             justifyContent={'flex-start'}
             alignItems={'center'}
           >
             <Logo />
+          </Grid> */}
+        <Grid container item xs={12} gap={2}>
+          <Grid item xs={12} justifyContent={'center'}>
+            <Logo />
           </Grid>
-          <Grid container item xs={12} gap={2}>
-            {sidebarMenuOptions.map((ele) => {
-              return (
-                <Grid item key={ele.id} xs={12}>
-                  <ItemLink
-                    to={ele.path}
-                    navItem={{
-                      label: ele.title,
-                      iconId: ele.iconId || '',
-                    }}
-                  />
-                </Grid>
-              );
-            })}
-          </Grid>
+          {sidebarMenuOptions.map((ele) => {
+            return (
+              <Grid item key={ele.id} xs={12}>
+                <ItemLink
+                  to={ele.path}
+                  navItem={{
+                    label: ele.title,
+                    iconId: ele.iconId || '',
+                  }}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
+        {/* </Grid> */}
       </Box>
       <Box height={FOOTER.HEIGHT} display={'flex'} justifyContent={'center'} alignItems={'center'}>
         <Typography variant="body2" color={'whitesmoke'}>

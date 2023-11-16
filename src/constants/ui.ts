@@ -3,9 +3,13 @@ export const HEADER = {
 };
 
 export const NAVBAR = {
-  WIDTH: 300,
+  WIDTH: 260,
 };
 
 export const FOOTER = {
   HEIGHT: 80,
+};
+
+export const MAIN_CONTAINER = {
+  BACKGROUND: '#DDDFE9',
 };
