@@ -9,6 +9,9 @@ import userHeartLineIcon from "remixicon-react/UserHeartLineIcon"
 import userSettingsFillIcon from "remixicon-react/UserSettingsFillIcon"
 import userSettingsLineIcon from "remixicon-react/UserSettingsLineIcon"
 
+import consultationFillIcon from "remixicon-react/firstAidKitFillIcon"
+import consultationLineIcon from "remixicon-react/firstAidKitLineIcon"
+
 
 export const sidebarIcons: Icons = {
     REMIXpatient_ON: userHeartFillIcon,
@@ -16,5 +19,7 @@ export const sidebarIcons: Icons = {
     REMIXscheduled_ON: calendarFillIcon,
     REMIXscheduled_OFF: calendarLineIcon,
     REMIXusers_ON: userSettingsFillIcon,
-    REMIXusers_OFF: userSettingsLineIcon
+    REMIXusers_OFF: userSettingsLineIcon,
+    REMIXconsultation_ON: consultationFillIcon,
+    REMIXconsultation_OFF: consultationLineIcon
 };
