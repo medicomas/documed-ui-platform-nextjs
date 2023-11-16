@@ -9,8 +9,8 @@ import userHeartLineIcon from 'remixicon-react/UserHeartLineIcon';
 import userSettingsFillIcon from 'remixicon-react/UserSettingsFillIcon';
 import userSettingsLineIcon from 'remixicon-react/UserSettingsLineIcon';
 
-import consultationFillIcon from 'remixicon-react/firstAidKitFillIcon';
-import consultationLineIcon from 'remixicon-react/firstAidKitLineIcon';
+import consultationFillIcon from 'remixicon-react/FirstAidKitFillIcon';
+import consultationLineIcon from 'remixicon-react/FirstAidKitLineIcon';
 
 export const sidebarIcons: Icons = {
   REMIXpatient_ON: userHeartFillIcon,
