@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   token: null,
   user: null,
-  mode: 'light'
+  mode: 'light',
   // mode: localStorage.getItem('mode')
   //   ? localStorage.getItem('mode')
   //   : window.matchMedia('(prefers-color-scheme: dark)').matches

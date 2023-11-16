@@ -4,25 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthService } from '@/web/services/auth.service';
 
-import { 
-  Typography, 
-  Box, 
-  Avatar, 
-  Menu, 
-  MenuItem, 
-  ListItemIcon, 
-  Divider, 
-  Button 
-} from '@mui/material';
+import { Typography, Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, Button } from '@mui/material';
 
-import {  
-  Settings, 
-  Logout
-} from '@mui/icons-material';
+import { Settings, Logout } from '@mui/icons-material';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export function AccountMenu( {accountName = "", accountLastName = ""}) {
+export function AccountMenu({ accountName = '', accountLastName = '' }) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -34,9 +22,9 @@ export function AccountMenu( {accountName = "", accountLastName = ""}) {
 
   const navigate = useNavigate();
 
-  const goToLogin = async() => {
+  const goToLogin = async () => {
     const res = await AuthService.logout();
-    if(res) navigate('/')
+    if (res) navigate('/');
   };
 
   return (
@@ -62,7 +50,10 @@ export function AccountMenu( {accountName = "", accountLastName = ""}) {
             textAlign: 'center',
           }}
         >
-          <Avatar sx={{ width: 36, height: 36 }}>{accountName[0]}{accountLastName[0]}</Avatar>
+          <Avatar sx={{ width: 36, height: 36 }}>
+            {accountName[0]}
+            {accountLastName[0]}
+          </Avatar>
           <Box ml={1} sx={{ display: { xs: 'none', sm: 'block' } }}>
             <Typography variant="body1" color={'black'}>
               {accountName}

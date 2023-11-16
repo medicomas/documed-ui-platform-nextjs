@@ -1,13 +1,13 @@
-import UserService from "../services/user.service";
+import UserService from '../services/user.service';
 
 export const authRequestInterceptor = async (config: any) => {
-    const token = UserService.getToken();
-    
-    const authPrefix = "Bearer";
+  const token = UserService.getToken();
 
-    if(token) {
-        config.headers.Authorization = token ? `${authPrefix} ${token}` : "";
-    }
+  const authPrefix = 'Bearer';
 
-    return config;
-}
+  if (token) {
+    config.headers.Authorization = token ? `${authPrefix} ${token}` : '';
+  }
+
+  return config;
+};

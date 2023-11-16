@@ -8,11 +8,9 @@ const createRoutesFromConfig = (routes: any[]) => {
   return routes.map((route) => {
     if (route.children && route.type === RouteNodeType.LAYOUT) {
       const elementWithNestedRoutes = (
-        <Route
-          key={route.id}
-          element={route.element}>
-              {createRoutesFromConfig(route.children)}
-          </Route>
+        <Route key={route.id} element={route.element}>
+          {createRoutesFromConfig(route.children)}
+        </Route>
       );
       return elementWithNestedRoutes;
     }
@@ -26,7 +24,7 @@ export const Routing = () => {
   return (
     <Router>
       {createRoutesFromConfig(config)}
-      <Route path='*' element={<NotFoundPage />}/>
+      <Route path="*" element={<NotFoundPage />} />
     </Router>
   );
 };

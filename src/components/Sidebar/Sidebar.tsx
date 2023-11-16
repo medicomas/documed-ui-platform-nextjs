@@ -7,7 +7,6 @@ import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import { sidebarMenuOptions } from '@/routes/config';
 import { Logo } from '../Logo/Logo';
 
-
 export const Sidebar = () => {
   return (
     <Box height={'100vh'} display={'flex'} flexDirection={'column'}>

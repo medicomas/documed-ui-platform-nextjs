@@ -285,7 +285,7 @@ export const AppThemeProvider: React.FC<Props> = ({ children }) => {
               fontFamily: 'Plus Jakarta Sans',
               transition: 'all 0.1s ease-in-out',
               fontWeight: '700',
-              height: "36px",
+              height: '36px',
               '&:hover': {
                 opacity: 0.8,
               },
@@ -305,7 +305,6 @@ export const AppThemeProvider: React.FC<Props> = ({ children }) => {
               },
             },
           },
-        
         },
       },
     }),

@@ -1,12 +1,7 @@
-import GenericService from "./common/generic-crud.service";
+import GenericService from './common/generic-crud.service';
 
-const PatientService = new GenericService (
-    "patient",
-    "patient",
-    "id",
-    {
-        bodyPostWithOutItemKey: true
-    }
-);
+const PatientService = new GenericService('patient', 'patient', 'id', {
+  bodyPostWithOutItemKey: true,
+});
 
 export default PatientService;
