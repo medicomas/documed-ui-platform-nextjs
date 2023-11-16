@@ -8,6 +8,7 @@ import { Home as PatientHomePage } from '@/pages/Patients/Home';
 
 import { flattenConfig } from '@/utils/routes.util';
 import { Sheduled } from '@/pages/Sheduled';
+import { Consultation } from '@/pages/Consultation';
 
 export enum RouteNodeType {
   LAYOUT,
@@ -70,6 +71,15 @@ export const config = [
         sidebar: true,
         isPrivate: false,
         iconId: 'REMIXusers',
+      },
+      {
+        id: 'consultation',
+        title: 'Consulta',
+        element: <Consultation />,
+        path: '/consultation',
+        sidebar: true,
+        isPrivate: false,
+        iconId: 'REMIXconsultation',
       },
     ],
   },
