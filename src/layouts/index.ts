@@ -1,4 +1,4 @@
 export enum Layout {
-    AUTH = 0,
-    MAIN_CONTAINER = 1
+  AUTH = 0,
+  MAIN_CONTAINER = 1,
 }

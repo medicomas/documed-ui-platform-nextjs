@@ -6,36 +6,28 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { ViewState } from '@devexpress/dx-react-scheduler';
 import { useState } from 'react';
 import { ChangeEvent } from 'react';
-import {
-  Scheduler,
-  WeekView,
-  MonthView,
-  Appointments,
-} from '@devexpress/dx-react-scheduler-material-ui';
+import { Scheduler, WeekView, MonthView, Appointments } from '@devexpress/dx-react-scheduler-material-ui';
 
 import { appointments } from './data';
 
 interface Props {
-  currentViewName?: any
-  onChange?: any
+  currentViewName?: any;
+  onChange?: any;
 }
 
-const ExternalViewSwitcher = ({
-    currentViewName,
-    onChange,
-  }: Props) => (
-    <RadioGroup
-      aria-label="Views"
-      style={{ flexDirection: 'row' }}
-      name="views"
-      value={currentViewName}
-      onChange={onChange}
-    >
-      <FormControlLabel value="Week" control={<Radio />} label="Week" />
-      <FormControlLabel value="Work Week" control={<Radio />} label="Work Week" />
-      <FormControlLabel value="Month" control={<Radio />} label="Month" />
-    </RadioGroup>
-  );
+const ExternalViewSwitcher = ({ currentViewName, onChange }: Props) => (
+  <RadioGroup
+    aria-label="Views"
+    style={{ flexDirection: 'row' }}
+    name="views"
+    value={currentViewName}
+    onChange={onChange}
+  >
+    <FormControlLabel value="Week" control={<Radio />} label="Week" />
+    <FormControlLabel value="Work Week" control={<Radio />} label="Work Week" />
+    <FormControlLabel value="Month" control={<Radio />} label="Month" />
+  </RadioGroup>
+);
 
 /*   constructor(props) {
     super(props);
@@ -51,52 +43,27 @@ const ExternalViewSwitcher = ({
   }
  */
 
+export const Demo = () => {
+  const [data] = useState(appointments);
+  const [currentViewName, setCurrentViewName] = useState('Month');
+  const currentViewNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCurrentViewName(e.target.value);
+  };
 
+  return (
+    <React.Fragment>
+      <ExternalViewSwitcher currentViewName={currentViewName} onChange={currentViewNameChange} />
 
-  
-  
-  export const Demo = ()=>{
-  
+      <Paper>
+        <Scheduler data={data} height={660}>
+          <ViewState defaultCurrentDate="2018-07-25" currentViewName={currentViewName} />
+          <WeekView startDayHour={10} endDayHour={19} />
+          <WeekView name="Work Week" excludedDays={[0, 6]} startDayHour={9} endDayHour={19} />
+          <MonthView />
 
-    const [data] = useState(appointments)
-    const [currentViewName, setCurrentViewName] = useState('Month')
-    const currentViewNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setCurrentViewName(e.target.value);
-      }
-
-    return (
-
-
-        <React.Fragment>
-          <ExternalViewSwitcher
-            currentViewName={currentViewName}
-            onChange={currentViewNameChange}
-          />
-  
-          <Paper>
-            <Scheduler
-              data={data}
-              height={660}
-            >
-              <ViewState
-                defaultCurrentDate="2018-07-25"
-                currentViewName={currentViewName}
-              />
-              <WeekView
-                startDayHour={10}
-                endDayHour={19}
-              />
-              <WeekView
-                name="Work Week"
-                excludedDays={[0, 6]}
-                startDayHour={9}
-                endDayHour={19}
-              />
-              <MonthView />
-  
-              <Appointments />
-            </Scheduler>
-          </Paper>
-        </React.Fragment>
-      );
-  }
+          <Appointments />
+        </Scheduler>
+      </Paper>
+    </React.Fragment>
+  );
+};

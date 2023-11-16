@@ -1,3 +1,3 @@
 export const Detail = () => {
-    return <>Patient Detail</>;
-}
+  return <>Patient Detail</>;
+};

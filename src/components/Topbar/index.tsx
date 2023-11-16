@@ -6,18 +6,17 @@ import { CustomBreadcrumbs } from './Breadcrumbs';
 
 interface Props {
   handleToggle?: () => void;
-  account?: any
+  account?: any;
 }
 
 export const Topbar = ({ handleToggle, account }: Props) => {
-
   return (
     <Grid
       container
-      sx={{ 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        // borderBottom: '1px solid #e0e0e0' 
+      sx={{
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        // borderBottom: '1px solid #e0e0e0'
       }}
       height={HEADER.HEIGHT}
     >

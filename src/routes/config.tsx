@@ -1,19 +1,19 @@
-import { Login } from "@/pages/Login";
+import { Login } from '@/pages/Login';
 
-import { MainContainer } from "@/layouts/Containers/MainContainer";
-import { AuthLayout } from "@/layouts/Auth/AuthLayout";
+import { MainContainer } from '@/layouts/Containers/MainContainer';
+import { AuthLayout } from '@/layouts/Auth/AuthLayout';
 
-import { Detail } from "@/pages/Patients";
-import { Home as PatientHomePage } from "@/pages/Patients/Home";
+import { Detail } from '@/pages/Patients';
+import { Home as PatientHomePage } from '@/pages/Patients/Home';
 
-import { flattenConfig } from "@/utils/routes.util";
-import { Sheduled } from "@/pages/Sheduled";
+import { flattenConfig } from '@/utils/routes.util';
+import { Sheduled } from '@/pages/Sheduled';
 
-import { Consultation } from "@/pages/Consultation"; 
+import { Consultation } from '@/pages/Consultation';
 
 export enum RouteNodeType {
   LAYOUT,
-  PAGE
+  PAGE,
 }
 
 // type RouteNode = {
@@ -28,7 +28,7 @@ export enum RouteNodeType {
 
 export const config = [
   {
-    id: "auth-container",
+    id: 'auth-container',
     element: <AuthLayout />,
     type: RouteNodeType.LAYOUT,
     children: [
@@ -39,21 +39,21 @@ export const config = [
         path: '/',
         isPrivate: false,
       },
-    ]
+    ],
   },
   {
-    id: "main-container",
+    id: 'main-container',
     element: <MainContainer />,
     type: RouteNodeType.LAYOUT,
     children: [
       {
-        id: "patients-home",
+        id: 'patients-home',
         title: 'Pacientes',
         element: <PatientHomePage />,
         path: '/patients',
         isPrivate: true,
         sidebar: true,
-        iconId: "REMIXpatient"
+        iconId: 'REMIXpatient',
       },
       {
         id: 'scheduled-appointments',
@@ -62,7 +62,7 @@ export const config = [
         path: '/scheduled-appointments',
         sidebar: true,
         isPrivate: false,
-        iconId: "REMIXscheduled"
+        iconId: 'REMIXscheduled',
       },
       {
         id: 'user-management',
@@ -71,19 +71,18 @@ export const config = [
         path: '/user-management',
         sidebar: true,
         isPrivate: false,
-        iconId: "REMIXusers"
+        iconId: 'REMIXusers',
       },
       {
         id: 'consultation',
         title: 'Consulta',
-        element: <Consultation/>,
+        element: <Consultation />,
         path: '/consultation',
         sidebar: true,
         isPrivate: false,
-        iconId: 'REMIXconsultation'
-
-      }
-    ]
+        iconId: 'REMIXconsultation',
+      },
+    ],
   },
   // {
   //   id: 'patients-attention',
@@ -220,13 +219,11 @@ export const config = [
   // }
 ];
 
-
-
 const flatConfig = flattenConfig(config);
 
 export const breadcrumbNameMap = flatConfig.reduce((acc, routeConfig) => {
-  if ( routeConfig.path && routeConfig.title ) return { ...acc, [routeConfig.path]: routeConfig.title };
+  if (routeConfig.path && routeConfig.title) return { ...acc, [routeConfig.path]: routeConfig.title };
   return { ...acc };
 }, {});
 
-export  const sidebarMenuOptions = flatConfig.filter(item => item.sidebar === true);
+export const sidebarMenuOptions = flatConfig.filter((item) => item.sidebar === true);

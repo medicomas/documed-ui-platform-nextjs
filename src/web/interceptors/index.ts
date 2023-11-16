@@ -1,5 +1,3 @@
-import { authRequestInterceptor } from "./authRequestInterceptor.interceptor"
+import { authRequestInterceptor } from './authRequestInterceptor.interceptor';
 
-export {
-    authRequestInterceptor
-};
+export { authRequestInterceptor };

@@ -9,34 +9,33 @@ import { NAVBAR } from '@/constants/ui';
 import { Sidebar, Topbar } from '@/components';
 import ProfileService from '@/web/services/profile.service';
 
-const background = "#ffffff";
+const background = '#ffffff';
 
 export const MainContainer = () => {
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const [account, setAccount] = useState<any>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [account, setAccount] = useState<any>(null);
 
-
-    const fecth = async () => {
-        let account;
-        try {
-          account = await ProfileService.get();
-        } catch (error) {
-            console.error(error);
-        } finally {
-          console.log(account)
-          setAccount(account);
-        }
+  const fecth = async () => {
+    let account;
+    try {
+      account = await ProfileService.get();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      console.log(account);
+      setAccount(account);
     }
+  };
 
-    useEffect(() => {
-        fecth().then();
-    }, [])
+  useEffect(() => {
+    fecth().then();
+  }, []);
 
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
-    return (
+  return (
     <Grid container sx={{ background: background }}>
       <Grid item width={{ xs: 0, sm: NAVBAR.WIDTH }}>
         <Drawer
@@ -82,15 +81,16 @@ export const MainContainer = () => {
           <Sidebar />
         </Drawer>
       </Grid>
-      <Grid item container xs sx={{ minHeight: `calc(100vh)`, background: "#f8f9fa"}}>
-        <Container maxWidth={'xl'} >
+      <Grid item container xs sx={{ minHeight: `calc(100vh)`, background: '#f8f9fa' }}>
+        <Container maxWidth={'xl'}>
           <Grid item xs={12}>
             <Topbar account={account} handleToggle={handleDrawerToggle} />
           </Grid>
-          <Grid item flex={1} >
+          <Grid item flex={1}>
             <Outlet />
           </Grid>
         </Container>
       </Grid>
-    </Grid>)
+    </Grid>
+  );
 };

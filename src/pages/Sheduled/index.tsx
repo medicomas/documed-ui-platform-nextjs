@@ -1,5 +1,5 @@
-import { Demo } from "../../components/calendar/calendar"
+import { Demo } from '../../components/calendar/calendar';
 
 export const Sheduled = () => {
-    return (<Demo />)
-}
+  return <Demo />;
+};
