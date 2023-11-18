@@ -25,11 +25,11 @@ export function CustomBreadcrumbs() {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
         return last ? (
-          <Typography color="text.primary" key={to}>
+          <Typography variant="h2" color="text.primary" key={to}>
             {breadcrumbNameMap[to]}
           </Typography>
         ) : (
-          <LinkRouter underline="hover" color="inherit" to={to} key={to}>
+          <LinkRouter variant="h2"  underline="hover" color="inherit" to={to} key={to}>
             {breadcrumbNameMap[to]}
           </LinkRouter>
         );

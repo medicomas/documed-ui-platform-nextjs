@@ -30,6 +30,10 @@ class GenericService<T extends IndexableType> {
     this.config = config;
   }
 
+  public getIdKey(): keyof T {
+    return this.idKey;
+  }
+
   async get(): Promise<T[]> {
     const response = await medicomasAxiosClient.get(`${this.endpoint}`);
     return response?.data || [];
