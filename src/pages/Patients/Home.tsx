@@ -13,9 +13,12 @@ import { Button, Grid, Typography } from '@mui/material';
 import { LeftTimeLine } from '@/components/Timeline';
 import { IconWrapper } from '@/components/Icons/icon-wrapper';
 import { MedSummary } from '@/components/med-summary';
+import AddIcon from '@mui/icons-material/Add';
+import { Drawer } from '@/components/Drawer';
+import CreatePatientForm from '@/components/form/create-patient-form';
+import useCrud from '@/hooks/useCrud';
 
 const green = '#1B9C9C';
-
 const white = '#DDDFE9';
 
 const listData: any[] = [
@@ -44,30 +47,17 @@ const events = [
 ];
 
 export const Home = () => {
-  const [data, setData] = useState<any>([]);
-  const [selectedPatient, setSelectedPatient] = useState<any>({
-    surnames: 'Gamarra Ostos',
-    names: 'Carmen',
-  });
 
-  const fecth = async () => {
-    let patients;
-    try {
-      patients = await PatientService.get();
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setData(patients);
-    }
-  };
+  const {
+    data,
+    createEntity
+  } = useCrud({
+    service: PatientService
+  })
 
-  useEffect(() => {
-    fecth().then();
-  }, []);
+  const [selectedPatient, setSelectedPatient] = useState<any>(null)
 
-  // useEffect(() => {
-  //   console.log(selectedPatient);
-  // }, [selectedPatient]);
+  const [ isOpenDrawer, setIsOpenDrawer ] = useState<boolean>(false);
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -120,67 +110,86 @@ export const Home = () => {
   ];
   const [rowSelectionModel, setRowSelectionModel] = useState<GridRowSelectionModel>([]);
 
-  // useEffect(() => {
-  //   console.log(rowSelectionModel);
-  // }, [rowSelectionModel]);
-
   return (
-    <Grid container>
-      <Grid item container xs={12} md={4} p={5}>
-        <MedSummary
-          lastName={selectedPatient.surnames}
-          name={selectedPatient.names}
-          antecedentsList={listData}
-          events={events}
-          buttonLabel="Iniciar Consulta"
-          onAction={() => {}}
-        />
-      </Grid>
-      <Grid item xs={12} md={8} padding={5} sx={{ border: '1px solid #818497', borderRadius: '4px' }}>
-        <Box sx={{ height: 400, width: '100%' }}>
-          <DataGrid
-            rows={data}
-            columns={columns}
-            sx={{
-              border: 'none',
-              margin: 'auto',
-              '&, [class^=MuiDataGrid]': { border: 'none' },
-              '& .MuiDataGrid-row.Mui-selected, [aria-selected=true]': {
-                borderRadius: '5px',
-                backgroundColor: green, // green
-                color: white,
-                fontWeight: 'normal',
-                '&:hover': {
-                  backgroundColor: green,
-                },
-              },
-              '&.MuiDataGrid-root .MuiDataGrid-cell:focus-within': {
-                outline: 'none !important',
-              },
-            }}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 5,
-                },
-              },
-            }}
-            pageSizeOptions={[5]}
-            // onRowSelectionModelChange={(rowSelectionModel: GridRowSelectionModel, details: GridCallbackDetails) => {
-            onRowSelectionModelChange={(newRowSelectionModel) => {
-              setRowSelectionModel(newRowSelectionModel);
-            }}
-            rowSelectionModel={rowSelectionModel}
-            // }}
-            // onRowClick={(info) => {
-            //   console.log(info)
-            // }}
-
-            // checkboxSelection
-            // disableRowSelectionOnClick
+    <>
+      <Grid container>
+        {selectedPatient && <Grid item container xs={12} md={4} p={5}>
+          <MedSummary
+            lastName={selectedPatient.surnames}
+            name={selectedPatient.names}
+            antecedentsList={listData}
+            events={events}
+            buttonLabel="Iniciar Consulta"
+            onAction={() => {}}
           />
+        </Grid>}
+        <Grid item xs={12} md={selectedPatient ? 8 : 12} padding={5}>
+        <Box width={"100%"} py={2}>
+            <Grid container alignItems={"center"} >
+              <Grid xs>
+                {/* <Box>Search</Box> */}
+              </Grid>
+            <Grid item pl={3}>
+              <Button
+                type="submit"
+                onClick={() => setIsOpenDrawer(true)}
+                fullWidth
+                variant="outlined"
+                startIcon={<AddIcon />}
+              >
+                <Typography>Agregar</Typography>
+              </Button>
+            </Grid>
+            </Grid>
         </Box>
+        <Box sx={{ height: 400, width: '100%', border: '1px solid #818497', borderRadius: '4px', padding: 2}}>
+            <DataGrid
+              rows={data}
+              columns={columns}
+              sx={{
+                border: 'none',
+                margin: 'auto',
+                '&, [class^=MuiDataGrid]': { border: 'none' },
+                '& .MuiDataGrid-row.Mui-selected, [aria-selected=true]': {
+                  borderRadius: '5px',
+                  backgroundColor: green,
+                  color: white,
+                  fontWeight: 'normal',
+                  '&:hover': {
+                    backgroundColor: green,
+                  },
+                },
+                '&.MuiDataGrid-root .MuiDataGrid-cell:focus-within': {
+                  outline: 'none !important',
+                },
+              }}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
+                  },
+                },
+              }}
+              pageSizeOptions={[5]}
+              onRowSelectionModelChange={(newRowSelectionModel) => {
+                setRowSelectionModel(newRowSelectionModel);
+                setSelectedPatient(data.find((e) => e.id === newRowSelectionModel[0]))
+              }}
+              rowSelectionModel={rowSelectionModel}
+            />
+          </Box>
+        </Grid>
       </Grid>
-    </Grid>
+      <Drawer isOpen={isOpenDrawer} setIsOpen={setIsOpenDrawer} config={{
+        metadata: {
+          title: "Agregar Paciente"
+        }
+      }}>
+              <CreatePatientForm onSubmit={(e: any) => {
+                createEntity(e);
+                setIsOpenDrawer(false);
+              }} />
+      </Drawer>
+    </>
   );
 };

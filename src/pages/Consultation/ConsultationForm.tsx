@@ -13,7 +13,7 @@ export const ConsultationForm = () => {
   };
   const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => {
-    console.log(data);
+    // console.log(data);
   };
 
   const [diagnosisCount, setDiagnosisCount] = useState(1);
@@ -33,7 +33,7 @@ export const ConsultationForm = () => {
   };
 
   return (
-    <Container>
+    // <Container>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -85,10 +85,10 @@ export const ConsultationForm = () => {
                 ))}
               </Grid>
               <Typography sx={{ fontWeight: 'bold' }}>Constantes vitales</Typography>
-              <Grid item container xs={12} sm={12} md={12} sx={{ marginTop: '3%' }}>
+              <Grid item container xs={12} sm={12} md={12} sx={{ marginTop: '3%' }} columnSpacing={3}>
                 <Grid item xs={12} sm={12} md={4}>
                   <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} marginBottom={1}>
-                    <Typography sx={{ order: '1', fontSize: '0.9rem' }}>Presión arterial</Typography>
+                    <Typography sx={{ order: '1', fontSize: '0.9rem', width: '40%'  }}>Presión arterial</Typography>
                     <TextField
                       sx={{ order: '2', marginLeft: '10%', width: '25%' }}
                       variant="filled"
@@ -97,12 +97,12 @@ export const ConsultationForm = () => {
                       hiddenLabel
                       InputProps={{ disableUnderline: true }}
                     />
-                    <Typography sx={{ order: '3', fontSize: '0.9rem', marginLeft: 1 }}>mmHg</Typography>
+                    <Typography sx={{ order: '3', fontSize: '0.9rem', marginLeft: 1  }}>mmHg</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} marginBottom={1}>
-                    <Typography sx={{ order: '1', fontSize: '0.9rem' }}>Temperatura</Typography>
+                    <Typography sx={{ order: '1', fontSize: '0.9rem', width: '40%' }}>Temperatura</Typography>
                     <TextField
-                      sx={{ order: '2', marginLeft: '14%', width: '25%' }}
+                      sx={{ order: '2', marginLeft: '10%', width: '25%' }}
                       variant="filled"
                       {...register('temperatura')}
                       size="small"
@@ -112,11 +112,11 @@ export const ConsultationForm = () => {
                     <Typography sx={{ order: '3', fontSize: '0.9rem', marginLeft: 1 }}>°C</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} marginBottom={1}>
-                    <Typography sx={{ order: '1', fontSize: '0.9rem' }}>
+                    <Typography sx={{ order: '1', fontSize: '0.9rem', width: '40%' }}>
                       Saturación O<sub>2</sub>
                     </Typography>
                     <TextField
-                      sx={{ order: '2', marginLeft: '12%', width: '25%' }}
+                      sx={{ order: '2', marginLeft: '10%', width: '25%' }}
                       variant="filled"
                       {...register('saturacion')}
                       size="small"
@@ -128,7 +128,7 @@ export const ConsultationForm = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={4}>
                   <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} marginBottom={1}>
-                    <Typography sx={{ order: '1', fontSize: '0.9rem' }}>F. Respiratoria</Typography>
+                    <Typography sx={{ order: '1', fontSize: '0.9rem', width: "40%" }}>F. Respiratoria</Typography>
                     <TextField
                       sx={{ order: '2', marginLeft: '10%', width: '25%' }}
                       variant="filled"
@@ -140,9 +140,9 @@ export const ConsultationForm = () => {
                     <Typography sx={{ order: '3', fontSize: '0.9rem', marginLeft: 1 }}>rpm</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} marginBottom={1}>
-                    <Typography sx={{ order: '1', fontSize: '0.9rem' }}>F. Cardíaca</Typography>
+                    <Typography sx={{ order: '1', fontSize: '0.9rem', width: "40%"  }}>F. Cardíaca</Typography>
                     <TextField
-                      sx={{ order: '2', marginLeft: '16%', width: '25%' }}
+                      sx={{ order: '2', marginLeft: '10%', width: '25%' }}
                       variant="filled"
                       {...register('fCardiaca')}
                       size="small"
@@ -178,7 +178,7 @@ export const ConsultationForm = () => {
                     />
                     <Typography sx={{ order: '3', fontSize: '0.9rem', marginLeft: 1 }}>m</Typography>
                   </Box>
-                  <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} marginBottom={1}>
+                  <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', }} marginBottom={1}>
                     <Typography sx={{ order: '1', fontSize: '0.9rem', marginRight: 0.5 }}>IMC</Typography>
                     <TextField
                       sx={{ order: '2', marginLeft: '10%', width: '25%' }}
@@ -293,6 +293,6 @@ export const ConsultationForm = () => {
           </TabPanel>
         </TabContext>
       </form>
-    </Container>
+    // </Container>
   );
 };
