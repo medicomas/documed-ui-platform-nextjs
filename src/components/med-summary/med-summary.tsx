@@ -11,7 +11,7 @@ type ItemEvent = {
 };
 
 type List = {
-  label: string;
+  name: string;
   value: string;
 };
 
@@ -38,12 +38,12 @@ export const MedSummary = ({ name, lastName, antecedentsList, events, buttonLabe
       <Grid item xs={12} mb={3}>
         {antecedentsList?.map((ele) => {
           return (
-            <Box key={ele.value + ele.label} sx={{ display: 'flex', mb: 0.5 }}>
+            <Box key={ele.value + ele.name} sx={{ display: 'flex', mb: 0.5 }}>
               <Box width={'30%'}>
-                <Typography fontWeight={'bold'}>{ele.label}:</Typography>
+                <Typography fontWeight={'bold'}>{ele.name}:</Typography>
               </Box>
               <Box width={'70%'}>
-                <Typography>{ele.value}</Typography>
+                <Typography>{ele.value.length === 0 ? "-" : ele.value}</Typography>
               </Box>
             </Box>
           );

@@ -5,13 +5,16 @@ import store from './app/store';
 import React from 'react';
 import App from './App';
 import './main.css';
+import { AppProvider } from './context/AppContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <AppThemeProvider>
-        <App />
-      </AppThemeProvider>
-    </Provider>
+    <AppProvider>
+      <Provider store={store}>
+        <AppThemeProvider>
+          <App />
+        </AppThemeProvider>
+      </Provider>
+    </AppProvider>
   </React.StrictMode>,
 );

@@ -1,20 +1,66 @@
 import { useState } from 'react';
 import { Box, Button, Container, Grid, Tab, TextField, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm,  } from 'react-hook-form';
 import AddIcon from '@mui/icons-material/Add';
 import EventIcon from '@mui/icons-material/Event';
 import { campos } from './campos';
 
-export const ConsultationForm = () => {
+interface Props {
+  onHandleSubmit: any;
+  onClear: any
+}
+
+export const ConsultationForm = ({
+  onHandleSubmit,
+  onClear
+}: Props) => {
   const [value, setValue] = useState('0');
   const handleChange = (event: any, newValue: any) => {
     setValue(newValue);
   };
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data: any) => {
-    // console.log(data);
-  };
+  const onSubmit: SubmitHandler<any> = (event, data) => {
+    event.preventDefault();
+
+    // console.log(data)
+  }
+  // const onSubmit = (data: any) => {
+  //   console.log("holaaaa", data)
+  //   const formattedData = {
+  //     anamnesis: data.relato,
+  //     physicalExploration: {
+  //       abdomen_y_pelvis: data['abdomen-pelvis'],
+  //       ano_y_recto: data['ano-recto'],
+  //       aspecto_general: data.aspecto,
+  //       cabeza_y_cuello: data['cabeza-cuello'],
+  //       cardiovascular: data.cardiovascular,
+  //       cavidad_oral: data.cavidadOral,
+  //       genito_urinario: data.genito,
+  //       locomotor: data.locomotor,
+  //       neurologico: data.neurologico
+  //     },
+  //     vitalSigns: {
+  //       presion_arterial: parseFloat(data.pArterial),
+  //       temperatura: parseFloat(data.temperatura),
+  //       frecuencia_respiratoria: parseFloat(data.fRespiratoria),
+  //       frecuencia_cardiaca: parseFloat(data.fCardiaca),
+  //       peso: parseFloat(data.peso),
+  //       talla: parseFloat(data.talla),
+  //       imc: parseFloat(data.imc)
+  //     },
+  //     workPlan: {
+  //       indications: data.indicaciones,
+  //       diagnose: diagnosisFields.map(field => data[`diagnostico${field}`]),
+  //       treatments: medicineFields.map(field => ({
+  //         medication: data[`medicamento${field}`],
+  //         dose: data[`dosis${field}`]
+  //       }))
+  //     }
+  //   };
+  
+  //   onHandleSubmit(formattedData);
+  // };
 
   const [diagnosisCount, setDiagnosisCount] = useState(1);
   const [diagnosisFields, setDiagnosisFields] = useState([1]);
@@ -34,7 +80,7 @@ export const ConsultationForm = () => {
 
   return (
     // <Container>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={onHandleSubmit}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} variant="fullWidth">
