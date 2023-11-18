@@ -6,8 +6,12 @@ import { FOOTER, HEADER } from '@/constants/ui';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import { sidebarMenuOptions } from '@/routes/config';
 import { Logo } from '../Logo/Logo';
+import { useAppContext } from '@/context/AppContext';
 
 export const Sidebar = () => {
+
+  const { loading, isInConsult, setLoading, setIsInConsult } = useAppContext();
+
   return (
     <Box height={'100vh'} display={'flex'} flexDirection={'column'}>
       <Box flex={1} sx={{ display: 'flex', alignItems: 'center' }}>
@@ -31,6 +35,11 @@ export const Sidebar = () => {
             <Logo />
           </Grid>
           {sidebarMenuOptions.map((ele) => {
+
+            if(!isInConsult && ele.id === "consultation") {
+              return;
+            }
+
             return (
               <Grid item key={ele.id} xs={12}>
                 <ItemLink

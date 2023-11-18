@@ -2,27 +2,31 @@ import React, { useEffect, useState } from 'react';
 
 import { Outlet } from 'react-router-dom';
 
-import { Grid, Drawer, Container } from '@mui/material';
+import { Grid, Drawer, Container, Backdrop, CircularProgress } from '@mui/material';
 
 import { NAVBAR, MAIN_CONTAINER } from '@/constants/ui';
 
 import { Sidebar, Topbar } from '@/components';
 import ProfileService from '@/web/services/profile.service';
+import { useAppContext } from '@/context/AppContext';
 
 const background = '#1B9C9C';
 
 export const MainContainer = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [account, setAccount] = useState<any>(null);
+  const { loading, isInConsult, setLoading, setIsInConsult, selectedPatient, setSelectedPatient, currentCita, setCurrentCita } = useAppContext();
 
   const fecth = async () => {
     let account;
+    setLoading(true)
     try {
       account = await ProfileService.get();
     } catch (error) {
       console.error(error);
     } finally {
       setAccount(account);
+      setLoading(false)
     }
   };
 
@@ -35,7 +39,8 @@ export const MainContainer = () => {
   };
 
   return (
-    <Grid container sx={{ background: background }}>
+  <>
+      <Grid container sx={{ background: background }}>
       <Grid item width={{ xs: 0, sm: NAVBAR.WIDTH }}>
         <Drawer
           variant="temporary"
@@ -91,5 +96,13 @@ export const MainContainer = () => {
         </Container>
       </Grid>
     </Grid>
+  <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+  </>
+
   );
 };

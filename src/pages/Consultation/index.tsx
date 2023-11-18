@@ -1,7 +1,11 @@
-import { Grid } from '@mui/material';
+import { Alert, AlertTitle, Grid } from '@mui/material';
 import { ConsultationForm } from './ConsultationForm';
 import { MedSummary } from '@/components/med-summary';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import AntecedentsService from '@/web/services/antecedents.service';
+import { useAppContext } from '@/context/AppContext';
+import ConsultationService from '@/web/services/consultation.service';
+import { useNavigate } from 'react-router-dom';
 
 const listData: any[] = [
     {
@@ -31,27 +35,81 @@ const listData: any[] = [
   
 export const Consultation = () => {
 
-    const [selectedPatient, setSelectedPatient] = useState<any>({
-        surnames: 'Gamarra Ostos',
-        names: 'Carmen',
-      });
+    const { loading, isInConsult, setLoading, setIsInConsult, selectedPatient, setSelectedPatient, currentCita, setCurrentCita } = useAppContext();
+
+    const [ antecedentList, setAntecedentList ] = useState<any>(null);
+
+    const [ isAlert, setAlert ] = useState(false);
+
+    const navigate = useNavigate();
+
+    const onClear = () => {
+        // setLoading(true); 
+
+       
+        // setLoading(false); 
+    };
+
+      const fecthAntecedents = async (id: number) => {
+        let ants; 
+        try {
+          ants =  await AntecedentsService.getByPatientId(id);
+        } catch (error) {
+          console.error(error)
+        }
+        return ants;
+    }
+
+    const finishConsultation = async (event: any, data: any) => {
+        setAlert(true)
+        setLoading(true); 
+    }
+
+  useEffect(() => {
+    if(isAlert) {
+        setTimeout(() => {
+            setAlert(false)
+            setSelectedPatient(null);
+            setIsInConsult(false);
+            setLoading(false); 
+            navigate('/patients'); 
+          }, 4000)
+    }
+    // return () => clearTimeout(timeId)
+  }, [isAlert]);
+
+    useEffect(() => {
+        if(selectedPatient) {
+          fecthAntecedents(selectedPatient.id).then(
+            (res) => setAntecedentList(res)
+          )
+        }
+      }, [selectedPatient])
+
+
 
     return (
-
+        <>
+        
         <Grid container>
         <Grid item container xs={12} md={4} p={5}>
           <MedSummary
             lastName={selectedPatient.surnames}
             name={selectedPatient.names}
-            antecedentsList={listData}
+            antecedentsList={antecedentList}
             events={events}
             buttonLabel="Finalizar Consulta"
-            onAction={() => {}}
+            onAction={finishConsultation}
           />
         </Grid>
         <Grid item xs={12} md={8} padding={5} sx={{ }}>
-            <ConsultationForm />
+            <ConsultationForm onHandleSubmit={finishConsultation} onClear={onClear} />
         </Grid>
       </Grid>
+        {isAlert && <Alert severity="success">
+            <AlertTitle>Exito</AlertTitle>
+            Se guardo con exito su <strong>Consulta!</strong>
+        </Alert>}
+        </>
     )
 };

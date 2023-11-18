@@ -17,6 +17,12 @@ import AddIcon from '@mui/icons-material/Add';
 import { Drawer } from '@/components/Drawer';
 import CreatePatientForm from '@/components/form/create-patient-form';
 import useCrud from '@/hooks/useCrud';
+import { SearchBar } from '@/components/Search';
+import AntecedentsService from '@/web/services/antecedents.service';
+import AppointmentService from '@/web/services/appointment.service';
+import ConsultationService from '@/web/services/consultation.service';
+import { useAppContext } from '@/context/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 const green = '#1B9C9C';
 const white = '#DDDFE9';
@@ -48,15 +54,20 @@ const events = [
 
 export const Home = () => {
 
+  const { loading, isInConsult, setLoading, setIsInConsult, selectedPatient, setSelectedPatient, currentCita, setCurrentCita } = useAppContext();
+
+  const navigate = useNavigate();
+
   const {
     data,
-    createEntity
+    createEntity,
+    search,
+    clearSearch
   } = useCrud({
     service: PatientService
   })
 
-  const [selectedPatient, setSelectedPatient] = useState<any>(null)
-
+  const [ antecedentList, setAntecedentList ] = useState<any>(null);
   const [ isOpenDrawer, setIsOpenDrawer ] = useState<boolean>(false);
 
   const columns: GridColDef[] = [
@@ -110,6 +121,55 @@ export const Home = () => {
   ];
   const [rowSelectionModel, setRowSelectionModel] = useState<GridRowSelectionModel>([]);
 
+  const handleSearch = (query: string) => {
+    search(query);
+  };
+
+ 
+
+const fecthAntecedents = async (id: number) => {
+    let ants; 
+    setLoading(true);
+
+    try {
+      ants =  await AntecedentsService.getByPatientId(id);
+    } catch (error) {
+      console.error(error)
+    } finally{
+      setLoading(false);
+
+    }
+    return ants;
+}
+
+const initConsultation =  async () => {
+  setLoading(true);
+
+  try {
+    const res = await AppointmentService.makeInstAppoinment(selectedPatient.id);
+    const currentCitajeje = await ConsultationService.init(selectedPatient.id, res.id);
+    setCurrentCita(currentCitajeje);
+    setIsInConsult(true);
+    navigate('/consultation'); 
+  } catch (error) {
+    console.error(error)
+  } finally {
+
+    // redirect      
+     setLoading(false);
+
+  }
+}
+
+useEffect(() => {
+  if(selectedPatient) {
+    fecthAntecedents(selectedPatient.id).then(
+      (res) => setAntecedentList(res)
+    )
+  }
+}, [selectedPatient])
+
+
   return (
     <>
       <Grid container>
@@ -117,17 +177,17 @@ export const Home = () => {
           <MedSummary
             lastName={selectedPatient.surnames}
             name={selectedPatient.names}
-            antecedentsList={listData}
+            antecedentsList={antecedentList}
             events={events}
             buttonLabel="Iniciar Consulta"
-            onAction={() => {}}
+            onAction={initConsultation}
           />
         </Grid>}
         <Grid item xs={12} md={selectedPatient ? 8 : 12} padding={5}>
         <Box width={"100%"} py={2}>
             <Grid container alignItems={"center"} >
               <Grid xs>
-                {/* <Box>Search</Box> */}
+                <SearchBar onSearch={handleSearch} onClear={clearSearch} />
               </Grid>
             <Grid item pl={3}>
               <Button

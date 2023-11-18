@@ -9,6 +9,7 @@ import { Home as PatientHomePage } from '@/pages/Patients/Home';
 import { flattenConfig } from '@/utils/routes.util';
 import { Sheduled } from '@/pages/Sheduled';
 import { Consultation } from '@/pages/Consultation';
+import { UserMngt } from '@/pages/users/home';
 
 export enum RouteNodeType {
   LAYOUT,
@@ -66,7 +67,7 @@ export const config = [
       {
         id: 'user-management',
         title: 'Usuarios',
-        element: <></>,
+        element: <UserMngt />,
         path: '/user-management',
         sidebar: true,
         isPrivate: false,
