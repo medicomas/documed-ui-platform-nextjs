@@ -43,6 +43,9 @@ const ExternalViewSwitcher = ({ currentViewName, onChange }: Props) => (
   }
  */
 
+  const green = '#1B9C9C';
+
+
 export const Demo = () => {
   const [data] = useState(appointments);
   const [currentViewName, setCurrentViewName] = useState('Month');

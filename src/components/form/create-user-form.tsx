@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { TextField, Button, Checkbox, FormControlLabel, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { TextField, Button, Checkbox, FormControlLabel, FormControl, InputLabel, Select, MenuItem, Typography } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -75,7 +75,9 @@ const CreateUser = ({
           )}
         />
       </FormControl>
-      <Button type="submit">Agregar</Button>
+      <Button type="submit" variant="contained" color="primary" sx={{my: 3}} >
+          <Typography>Agregar</Typography>
+      </Button>
     </form>
   );
 };
